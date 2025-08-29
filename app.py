@@ -1,6 +1,5 @@
 from flask import Flask, render_template, send_file
 from crawler import crawl_hnx, crawl_hose
-from email_sender import send_email
 import pandas as pd
 from datetime import datetime, timedelta
 from io import BytesIO
@@ -19,9 +18,9 @@ def index():
     df_all = df_all.sort_values(by="Date", ascending=False)
     df_latest = df_all.copy()
 
+    # Chỉ ghi nhận mã mới (KHÔNG gửi email)
     current_tickers = set(df_all["Ticker"])
     new_tickers = current_tickers - prev_tickers
-
     prev_tickers = current_tickers
 
     return render_template("index.html", records=df_all.to_dict(orient="records"))

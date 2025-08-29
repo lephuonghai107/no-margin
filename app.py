@@ -32,7 +32,7 @@ def update_data_periodically():
         except Exception as e:
             print("❌ Lỗi khi cập nhật dữ liệu:", e)
 
-        time.sleep(1800)  # chờ 30 phút
+        time.sleep(5800)  # chờ 30 phút
 
 # ========== Giao diện chính ==========
 @app.route("/")

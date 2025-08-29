@@ -21,8 +21,7 @@ def index():
 
     current_tickers = set(df_all["Ticker"])
     new_tickers = current_tickers - prev_tickers
-    if prev_tickers and new_tickers:
-        send_email(new_tickers)
+
     prev_tickers = current_tickers
 
     return render_template("index.html", records=df_all.to_dict(orient="records"))

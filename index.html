@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dữ liệu cổ phiếu không ký quỹ</title>
+    <style>
+        body { font-family: Arial; margin: 20px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ccc; }
+        tr.highlight { background-color: #ffecec; color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>📊 Danh sách cổ phiếu không ký quỹ (7 ngày gần nhất)</h2>
+    <a href="/export">📤 Tải về Excel</a>
+    <table>
+        <tr>
+            <th>Ticker</th><th>Full Name</th><th>Date</th><th>Reason</th><th>Source</th>
+        </tr>
+        {% for row in records %}
+        <tr class="{% if 'Cổ tức' in row.Reason or 'Tăng vốn' in row.Reason or 'Phát hành' in row.Reason %}highlight{% endif %}">
+            <td>{{ row.Ticker }}</td>
+            <td>{{ row.Full_name }}</td>
+            <td>{{ row.Date }}</td>
+            <td>{{ row.Reason }}</td>
+            <td>{{ row.Source }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
